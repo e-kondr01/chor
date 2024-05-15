@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+
+.white {
+  color: white
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.fs-small {
+  font-size: 16px;
+}

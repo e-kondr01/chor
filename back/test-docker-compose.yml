@@ -1,0 +1,17 @@
+name: test-chor
+
+services:
+  postgres:
+    image: postgres:latest
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_DB=chor
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - test-chor
+
+networks:
+  test-chor:
+    name: test-chor
