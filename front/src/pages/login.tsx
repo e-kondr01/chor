@@ -3,17 +3,20 @@ import { useForm } from "antd/es/form/Form";
 import styles from './login.module.css'
 import { Link } from "react-router-dom";
 import { RoutePaths } from "../lib/routes";
+import { authAPI } from "../api";
+import { formErrorsHandler } from "../lib/form-errors-handler";
+import { useState } from "react";
 
 const Login = () => {
     const [form] = useForm();
+    const [formError, setFormError] = useState<string>('')
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         const fields = form.getFieldsValue(true);
-        // TODO: api call
         try {
-            console.log(fields);
+            await authAPI.login(fields)
         } catch (error) {
-            console.error(error);
+            formErrorsHandler(form, error?.response?.data, setFormError)
         }
     }
 
@@ -37,6 +40,7 @@ const Login = () => {
         >
           <Input.Password />
         </Form.Item>
+        {!!formError && <p className={styles.error}>{formError}</p>}
         <Form.Item>
           <Button type="primary" htmlType="submit" block size="large">
             Войти

@@ -1,4 +1,4 @@
-from enum import StrEnum, auto
+from enum import StrEnum
 from typing import Annotated
 
 from fastapi.exceptions import RequestValidationError

@@ -1,13 +1,16 @@
 export const themeConfig = {
+  token: {
+    colorPrimary: '#c89909',
+    colorPrimaryHover: '#af860b',
+    colorLinkHover: '#c89909',
+  },
     components: {
       Button: {
-        colorPrimary: '#3c174c',
+        colorText: '#3c174c'
       },
       Input: {
-        colorPrimary: '#3c174c',
         paddingBlock: 12,
         inputFontSize: 14
-
       },
       Layout: {
         headerBg: '#afeeee',

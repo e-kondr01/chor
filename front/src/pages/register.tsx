@@ -3,19 +3,19 @@ import { useForm } from "antd/es/form/Form";
 import styles from './login.module.css'
 import { Link } from "react-router-dom";
 import { RoutePaths } from "../lib/routes";
+import { authAPI } from "../api";
 
 const Register = () => {
     const [form] = useForm();
 
-    const onSubmit = () => {
-        const fields = form.getFieldsValue(true);
-        // TODO: api call
-        try {
-            console.log(fields);
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    const onSubmit = async () => {
+      const fields = form.getFieldsValue(true);
+      try {
+          await authAPI.register(fields)
+      } catch (error) {
+          // TODO: error handling
+      }
+  }
 
 
   return (
@@ -23,7 +23,7 @@ const Register = () => {
       <Form requiredMark={false} form={form} onFinish={onSubmit} className={styles.login}>
         <Form.Item
           label="Логин"
-          name="username"
+          name="email"
           rules={[{ required: true, message: 'Введите логин' }]}
           labelCol={{span: 24}}
         >
