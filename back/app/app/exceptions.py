@@ -10,13 +10,13 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 
 class ErrorCodes(StrEnum):
-    USER_BAD_USERNAME = "Некорректный адрес электронной почты"
+    USER_BAD_USERNAME = "Такого пользователя нет в нашей базе :(("
     USER_BAD_PASSWORD = "Некорректный пароль"
-    USER_BAD_EMAIL = "Некорректный адрес электронной почты"
+    USER_BAD_EMAIL = "Некорректный логин"
     PASSWORDS_MISMATCH = "Введённые пароли не совпадают"
     WEAK_PASSWORD = "Слишком слабый пароль"
     REGISTER_INVALID_PASSWORD = "Слишком слабый пароль"
-    REGISTER_USER_ALREADY_EXISTS = "Пользователь с такой почтой уже существует"
+    REGISTER_USER_ALREADY_EXISTS = "Пользователь с таким логином уже существует"
     LOGIN_BAD_CREDENTIALS = "Неправильно введён логин или пароль"
 
 class FieldErrorSchema(BaseModel):
@@ -91,6 +91,7 @@ async def api_exception_handler(request: Request, exc: APIException) -> Response
 pydantic_errors_to_codes = {
     "The part after the @-sign is not valid. It should have a period.": "Неверный email",
     "The part after the @-sign is not valid. It is not within a valid top-level domain.": "Неверный email",
+    "String should match pattern '^[^\\d\\W_]*[.,' -]*[^\\d\\W_]$'": "В логине допускаются только латинские буквы"
 }
 
 
@@ -100,6 +101,8 @@ async def request_validation_exception_handler(
     non_field_errors = []
     errors = []
     for error in exc.errors():
+        print(error)
+
         if error["loc"] == ("body",):
             text = error["msg"].lstrip("Value error, ")
             non_field_errors.append(text)

@@ -6,11 +6,15 @@ export const themeConfig = {
   },
     components: {
       Button: {
-        colorText: '#3c174c'
+        colorText: '#3c174c',
+        controlHeight: 48,
+        colorTextDisabled: '#fff'
       },
       Input: {
         paddingBlock: 12,
-        inputFontSize: 14
+        inputFontSize: 14,
+        lineWidth: 4,
+        colorBorder: "#fff"
       },
       Layout: {
         headerBg: '#afeeee',

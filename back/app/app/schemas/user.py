@@ -2,7 +2,7 @@ import re
 from typing import Self
 
 from fastapi_users import schemas
-from pydantic import BaseModel, ConfigDict, EmailStr, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, field_validator, model_validator, Field
 
 from app.exceptions import ErrorCodes
 
@@ -11,13 +11,13 @@ PASSWORD_PATTERN = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$"
 
 
 class ReadUserSchema(BaseModel):
-    email: EmailStr
+    email: str = Field(pattern=NAME_SURNAME_PATTERN)
 
     model_config = ConfigDict(from_attributes=True)
 
 
 class CreateUserSchema(schemas.CreateUpdateDictModel):
-    email: EmailStr
+    email: str = Field(pattern=NAME_SURNAME_PATTERN)
     password: str
     re_password: str
 

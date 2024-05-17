@@ -1,0 +1,34 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.error {
+    color: red;
+    margin-top: -24px;
+}
+
+.successCat {
+    width: 100%;
+    animation: coolCat infinite 1s;
+}
+
+@keyframes coolCat {
+    0% {
+        border: solid 5px green;
+    }
+    20% {
+        border: solid 5px yellow;
+    }
+    50% {
+        border: solid 5px red;
+    }
+    70% {
+        border: solid 5px purple;
+    }
+    100% {
+        border: solid 5px blue;
+    }
+}

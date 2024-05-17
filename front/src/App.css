@@ -1,2 +1,3 @@
-/* NAME_SURNAME_PATTERN = r"^[^\d\W_]*[.,' -]*[^\d\W_]$"
-PASSWORD_PATTERN = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$" */
+body {
+    cursor: url('./assets/cursor.png'), auto;
+}
