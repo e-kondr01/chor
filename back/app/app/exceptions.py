@@ -101,8 +101,6 @@ async def request_validation_exception_handler(
     non_field_errors = []
     errors = []
     for error in exc.errors():
-        print(error)
-
         if error["loc"] == ("body",):
             text = error["msg"].lstrip("Value error, ")
             non_field_errors.append(text)
