@@ -6,11 +6,11 @@ const http = axios.create({
     baseURL: apiURL,
 });
 
-http.interceptors.request.use(
-    (error) => {
-        return Promise.reject(error);
-    },
-);
+http.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    return Promise.reject(error);
+  });
 
 
 export default http;
